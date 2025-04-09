@@ -4,7 +4,10 @@ import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedroc
 // Don't create the client here - wait until after env vars are loaded
 
 export async function mathCommandHandler(context: TurnContext, state: any): Promise<void> {
-  // Extract math question from the message
+
+  console.log('------- MATH COMMAND HANDLER -------');
+  console.log('Received message:', context.activity.text);  // Extract math question from the message
+  
   const message = context.activity.text;
   const mathQuestion = message.replace(/^\/math\s+/i, "").trim();
   

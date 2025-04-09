@@ -14,9 +14,10 @@ export class GenericCommandHandler {
     state: ApplicationTurnState
   ): Promise<string | Partial<Activity> | void> {
     console.log(`App received message: ${context.activity.text}`);
-    const text = context.activity.text.toLowerCase();
+    const text = context.activity.text.toLowerCase().trim();
     
-    if (text === "hi" || text === "hello") {
+    // More precise matching
+    if (["hi", "hello"].includes(text)) {
       return "Hello! I'm Giullya's Math Bot. Ask me any math question using the /math command!";
     } else if (text === "help") {
       return "Here's how to use me:\n- Type '/math' followed by your math question\n- Example: /math Solve for x: 2x+3=7\n- Type 'hi' or 'hello' for a greeting";

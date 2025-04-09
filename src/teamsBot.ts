@@ -16,6 +16,22 @@ export const app = new Application<ApplicationTurnState>({
 // Register the math command
 app.message("/math", mathCommandHandler);
 
+// Add a handler for conversation update events (like new members added)
+app.activity("conversationUpdate", async (context, state) => {
+  // Check if there are any new members added
+  const membersAdded = context.activity.membersAdded;
+  if (membersAdded && membersAdded.length > 0) {
+    // Loop through all the new members
+    for (const member of membersAdded) {
+      // Avoid sending a welcome message if the new member is the bot itself
+      if (member.id !== context.activity.recipient.id) {
+        // Send a welcome message to the new member
+        await context.sendActivity("Hi there! Welcome to the bot. Let me know if you need anything!");
+      }
+    }
+  }
+});
+
 // Add this to teamsBot.ts
 app.activity("message", async (context, state) => {
   const text = context.activity.text;
