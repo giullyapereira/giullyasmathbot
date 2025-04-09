@@ -1,62 +1,66 @@
 {
-    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.19/MicrosoftTeams.schema.json",
-    "manifestVersion": "1.19",
-    "version": "1.0.0",
-    "id": "0ac7d4a1-cd61-45be-a26b-f0f25b95729d",
-    "developer": {
-      "name": "Teams App, Inc.",
-      "websiteUrl": "https://giullyamathbot-g0bjg7g3exd6gyc2.azurewebsites.net",
-      "privacyUrl": "https://giullyamathbot-g0bjg7g3exd6gyc2.azurewebsites.net/privacy",
-      "termsOfUseUrl": "https://giullyamathbot-g0bjg7g3exd6gyc2.azurewebsites.net/termofuse"
-    },
-    "icons": {
-      "color": "color.png",
-      "outline": "outline.png"
-    },
-    "name": {
-      "short": "Giullya's Math Bot",
-      "full": "Giullya's Math Bot - AI-powered mathematics assistant using AWS Bedrock"
-    },
-    "description": {
-      "short": "A bot that helps solve math problems using AWS Bedrock",
-      "full": "Giullya's Math Bot is an AI-powered assistant that helps solve mathematics problems of all levels using AWS Bedrock. Ask any math question in natural language and get step-by-step solutions."
-    },
-    "accentColor": "#FFFFFF",
-    "bots": [
-      {
-        "botId": "1e1d8b2a-5984-456d-86d6-23114cf1a87a",
-        "scopes": [
-          "personal",
-          "team",
-          "groupChat"
-        ],
-        "supportsFiles": false,
-        "isNotificationOnly": false,
-        "commandLists": [
-          {
-            "scopes": [
-              "personal",
-              "team",
-              "groupChat"
-            ],
-            "commands": [
-              {
-                "title": "math",
-                "description": "Ask a math question"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "composeExtensions": [],
-    "configurableTabs": [],
-    "staticTabs": [],
-    "permissions": [
-      "identity",
-      "messageTeamMembers"
-    ],
-    "validDomains": [
-      "giullyamathbot-g0bjg7g3exd6gyc2.azurewebsites.net"
-    ]
-  }
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.19/MicrosoftTeams.schema.json",
+  "version": "1.0.0",
+  "manifestVersion": "1.19",
+  "id": "0ac7d4a1-cd61-45be-a26b-f0f25b95729d",
+  "name": {
+    "short": "Giullya's Math Bot",
+    "full": "Giullya's Math Bot - AI-powered mathematics assistant using AWS Bedrock"
+  },
+  "developer": {
+    "name": "Teams App, Inc.",
+    "websiteUrl": "https://google.com",
+    "privacyUrl": "https://google.com",
+    "termsOfUseUrl": "https://google.com"
+  },
+  "description": {
+    "short": "A bot that helps solve math problems using AWS Bedrock",
+    "full": "Giullya's Math Bot is an AI-powered assistant that helps solve mathematics problems of all levels using AWS Bedrock. Ask any math question in natural language and get step-by-step solutions."
+  },
+  "icons": {
+    "outline": "outline.png",
+    "color": "color.png"
+  },
+  "accentColor": "#FFFFFF",
+  "bots": [
+    {
+      "botId": "1e1d8b2a-5984-456d-86d6-23114cf1a87a",
+      "scopes": [
+        "personal",
+        "team",
+        "groupChat"
+      ],
+      "commandLists": [
+        {
+          "commands": [
+            {
+              "title": "/math",
+              "description": "Ask a math question"
+            }
+          ],
+          "scopes": [
+            "personal"
+          ]
+        },
+        {
+          "commands": [
+            {
+              "title": "/math",
+              "description": "Ask a math question"
+            }
+          ],
+          "scopes": [
+            "team"
+          ]
+        }
+      ],
+      "isNotificationOnly": false,
+      "supportsCalling": false,
+      "supportsVideo": false,
+      "supportsFiles": false
+    }
+  ],
+  "validDomains": [
+    "giullyamathbot-g0bjg7g3exd6gyc2.azurewebsites.net"
+  ]
+}
