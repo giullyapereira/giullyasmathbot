@@ -5,6 +5,8 @@ import { HelloWorldCommandHandler } from "./helloworldCommandHandler";
 import { adapter } from "./internal/initialize";
 import { ApplicationTurnState } from "./internal/interface";
 import { app } from "./teamsBot";
+import { mathCommandHandler } from "./mathCommandHandler";
+
 
 // This template uses `express` to serve HTTP responses.
 // Create express application.
@@ -37,6 +39,14 @@ app.message(
     if (reply) {
       await context.sendActivity(reply);
     }
+  }
+);
+
+// Add this alongside your other command handlers
+app.message(
+  /^\/math/i,  // Match /math at the beginning of a message
+  async (context: TurnContext, state: ApplicationTurnState) => {
+    await mathCommandHandler(context, state);
   }
 );
 

@@ -1,6 +1,7 @@
 import { Selector } from "@microsoft/teams-ai";
 import { Activity, TurnContext } from "botbuilder";
 import { ApplicationTurnState } from "./internal/interface";
+import { mathCommandHandler } from "./mathCommandHandler";
 
 /**
  * The `GenericCommandHandler` registers patterns and responds
@@ -8,35 +9,24 @@ import { ApplicationTurnState } from "./internal/interface";
  */
 export class GenericCommandHandler {
   triggerPatterns: string | RegExp | Selector | (string | RegExp | Selector)[] = new RegExp(/^.+$/);
-
   async handleCommandReceived(
     context: TurnContext,
     state: ApplicationTurnState
   ): Promise<string | Partial<Activity> | void> {
     console.log(`App received message: ${context.activity.text}`);
-
-    let response = "";
-    switch (context.activity.text) {
-      case "hi":
-        response =
-          "Hi there! I'm your Command Bot, here to assist you with your tasks. Type 'help' for a list of available commands.";
-        break;
-      case "hello":
-        response =
-          "Hello! I'm your Command Bot, always ready to help you out. If you need assistance, just type 'help' to see the available commands.";
-        break;
-      case "help":
-        response =
-          "Here's a list of commands I can help you with:\n" +
-          "- 'hi' or 'hello': Say hi or hello to me, and I'll greet you back.\n" +
-          "- 'help': Get a list of available commands.\n" +
-          "- 'helloWorld': See a sample response from me.\n" +
-          "\nFeel free to ask for help anytime you need it!";
-        break;
-      default:
-        response = `Sorry, command unknown. Please type 'help' to see the list of available commands.`;
+    const text = context.activity.text.toLowerCase();
+    
+    if (text === "hi" || text === "hello") {
+      return "Hello! I'm Giullya's Math Bot. Ask me any math question using the /math command!";
+    } else if (text === "help") {
+      return "Here's how to use me:\n- Type '/math' followed by your math question\n- Example: /math Solve for x: 2x+3=7\n- Type 'hi' or 'hello' for a greeting";
+    } else if (text.startsWith("/math")) {
+      // This won't execute if you've properly registered the math handler,
+      // but it's a backup in case the message falls through
+      await mathCommandHandler(context, state);
+      return;
+    } else {
+      return `I didn't understand that. Try using the /math command followed by a math question. Type 'help' for more information.`;
     }
-
-    return response;
   }
 }

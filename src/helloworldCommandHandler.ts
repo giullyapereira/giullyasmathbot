@@ -9,8 +9,8 @@ import { ApplicationTurnState } from "./internal/interface";
  * with an Adaptive Card if the user types the `triggerPatterns`.
  */
 export class HelloWorldCommandHandler {
-  triggerPatterns: string | RegExp | Selector | (string | RegExp | Selector)[] = "helloWorld";
-
+  triggerPatterns: string | RegExp | Selector | (string | RegExp | Selector)[] = 
+  [/^hello$/i, /^hi$/i, "helloWorld"];
   async handleCommandReceived(
     context: TurnContext,
     state: ApplicationTurnState
